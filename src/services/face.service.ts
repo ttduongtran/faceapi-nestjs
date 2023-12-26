@@ -169,7 +169,7 @@ export class FaceService {
     if (isRender || isRenderLandmark) {
       return this.drawFace(result, image, isRender, isRenderLandmark);
     } else {
-      return result.map((o) => ({
+      const items = result.map((o) => ({
         detection: {
           x: o.alignedRect.box.x,
           y: o.alignedRect.box.y,
@@ -179,6 +179,7 @@ export class FaceService {
         },
         encodings: Array.from(o.descriptor),
       }));
+      return { count: result?.length, items };
     }
   }
 
@@ -226,7 +227,7 @@ export class FaceService {
     if (isRender || isRenderLandmark) {
       return this.drawFace(result, image, isRender, isRenderLandmark);
     } else {
-      return result.map((data) => ({
+      const items = result.map((data) => ({
         detection: {
           x: data.alignedRect.box.x,
           y: data.alignedRect.box.y,
@@ -239,6 +240,7 @@ export class FaceService {
           y: position.y,
         })),
       }));
+      return { count: result?.length, items };
     }
   }
 }

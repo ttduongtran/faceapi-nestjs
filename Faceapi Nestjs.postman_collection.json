@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "cda7bef3-4f09-44ff-8a08-0fe5ac399bdb",
+		"name": "Faceapi Nestjs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29653804"
+	},
+	"item": [
+		{
+			"name": "Face Encoding",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SFGO159072621218608991661947989276",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/duongtran/Downloads/before.217f2995.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/faces/encoding?mode=multiple&renderLandmark=false&render=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"faces",
+						"encoding"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "multiple",
+							"description": "multiple / single"
+						},
+						{
+							"key": "renderLandmark",
+							"value": "false"
+						},
+						{
+							"key": "render",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Face Encoding",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "SFGO159072621218608991661947989276",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/duongtran/Downloads/before.217f2995.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/faces/encoding?mode=multiple&renderLandmark=false&render=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"faces",
+								"encoding"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "multiple",
+									"description": "multiple / single"
+								},
+								{
+									"key": "renderLandmark",
+									"value": "false"
+								},
+								{
+									"key": "render",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Face Landmark",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SFGO159072621218608991661947989276"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/duongtran/Downloads/bbt4.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/faces/landmark?mode=multiple&render=false&renderLandmark=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"faces",
+						"landmark"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "multiple",
+							"description": "multiple / single"
+						},
+						{
+							"key": "render",
+							"value": "false",
+							"description": "render face box"
+						},
+						{
+							"key": "renderLandmark",
+							"value": "false",
+							"description": "render 68 face landmark"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Face Landmark",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "SFGO159072621218608991661947989276"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/duongtran/Downloads/bbt4.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/faces/landmark?mode=multiple&render=false&renderLandmark=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"faces",
+								"landmark"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "multiple",
+									"description": "multiple / single"
+								},
+								{
+									"key": "render",
+									"value": "false",
+									"description": "render face box"
+								},
+								{
+									"key": "renderLandmark",
+									"value": "false",
+									"description": "render 68 face landmark"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}

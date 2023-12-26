@@ -52,12 +52,12 @@ export class FaceService {
     await faceapi.nets.faceRecognitionNet.loadFromDisk(
       join(__dirname, '../..', 'models'),
     );
-    await faceapi.nets.faceExpressionNet.loadFromDisk(
-      join(__dirname, '../..', 'models'),
-    );
-    await faceapi.nets.ageGenderNet.loadFromDisk(
-      join(__dirname, '../..', 'models'),
-    );
+    // await faceapi.nets.faceExpressionNet.loadFromDisk(
+    //   join(__dirname, '../..', 'models'),
+    // );
+    // await faceapi.nets.ageGenderNet.loadFromDisk(
+    //   join(__dirname, '../..', 'models'),
+    // );
   }
 
   get canvas() {
@@ -69,6 +69,8 @@ export class FaceService {
     image: any,
     isRender: boolean,
     isRenderLandmark: boolean,
+    isRenderExpression?: boolean,
+    isRenderAgeAndGender?: boolean,
   ) {
     const out = faceapi.createCanvasFromMedia(image) as any;
     if (isRender) {
@@ -87,6 +89,29 @@ export class FaceService {
           : result.landmarks,
       );
     }
+    if (isRenderExpression) {
+      faceapi.draw.drawFaceExpressions(
+        out,
+        Array.isArray(result)
+          ? result.map((o) => o.expressions)
+          : result.expressions,
+      );
+    }
+    if (isRenderAgeAndGender) {
+      result.forEach((o) => {
+        const { age, gender, genderProbability } = o;
+        new faceapi.draw.DrawTextField(
+          [
+            `${faceapi.utils.round(age, 0)} years`,
+            `${gender} (${faceapi.utils.round(genderProbability)})`,
+          ],
+          result.detection.box.bottomLeft,
+        ).draw(out);
+      });
+    }
+
+    // saveFile('ageAndGenderRecognition.jpg', out.toBuffer('image/jpeg'));
+    // console.log('done, saved results to out/ageAndGenderRecognition.jpg');
     return out.toBuffer('image/jpeg');
   }
 
@@ -102,6 +127,8 @@ export class FaceService {
       .detectSingleFace(image, this.faceDetectorOptions)
       .withFaceLandmarks(true)
       .withFaceDescriptor();
+    // .withAgeAndGender()
+    // .withFaceExpressions()
     console.log(
       '🚀 ~ file: face.service.ts:98 ~ FaceService ~ result:',
       result,
@@ -133,8 +160,8 @@ export class FaceService {
     const result = await faceapi
       .detectAllFaces(image, this.faceDetectorOptions)
       .withFaceLandmarks(true)
-      .withFaceDescriptors()
-      .withFaceExpressions();
+      .withFaceDescriptors();
+    // .withFaceExpressions();
     console.log(
       '🚀 ~ file: face.service.ts:126 ~ FaceService ~ result:',
       result,
